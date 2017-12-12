@@ -1,0 +1,15 @@
+<!-- <import src="./city/city.wxml" /> -->
+
+<view class="container">
+  <view class="header">
+    <navigator url="./city/city?title=city" open-type="navigate">
+      <button type="default" size="{{mini}}">city</button>
+    </navigator>
+    <navigator url="./search/search" open-type="navigate">
+      <button type="default" size="{{mini}}">搜索</button>
+    </navigator>
+    <navigator url="./conterList/conterList" open-type="navigate">
+      <button type="default" size="{{mini}}">list</button>
+    </navigator>
+  </view>
+</view>
