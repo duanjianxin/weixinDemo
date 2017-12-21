@@ -1,0 +1,54 @@
+<view class="homePageWarp">
+    <view class="headBackground">
+        <!-- 默认背景图 -->
+        <image src="http://public-1255382141.file.myqcloud.com/miniApp/default_img.png"></image>
+    </view>
+    <view class="headWarp">
+        <view wx:if="{{avatar}}">
+            <image class="headerAvatar" src='{{avatar}}'></image>
+        </view>
+        <view wx:else>
+            <!-- 默认头像 -->
+            <image class="headerAvatar" src='http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png'></image>
+        </view>
+
+        <text class="headName">{{name}}</text>
+
+        <view wx:if="{{following==1}}">
+            <!-- 是否关注 -->
+            <view class="following">已关注</view>
+        </view>
+        <view wx:else>
+            <!-- 是否关注 -->
+            <view class="following">+关注</view>
+        </view>
+
+
+        <view class="friend_focus">
+            <text>粉丝：</text>{{focus_count}}
+            <text style="margin-left:60rpx;">发布：</text>{{record_count}}
+        </view>
+    </view>
+    <view class="transitionBar"></view>
+    <!-- 地址 -->
+    <view class="locationWarp">
+        <view class="locationBox">
+            <text>地址:</text>
+            <view class="location">{{location}}</view>
+        </view>
+        <view class="map">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_map_yg.png" mode="aspectFit"></image>
+        </view>
+    </view>
+    <view class="transitionBar"></view>
+    <view class="descriptionWarp">
+        <view>简介：</view>
+        <view class="description">
+            {{description}}
+        </view>
+    </view>
+    <!-- 热线电话 -->
+    <view class="hotline" bindtap="clickHotline">
+        <image src="http://public-1255382141.file.myqcloud.com/miniApp/hotline.png"></image>
+    </view>
+</view>

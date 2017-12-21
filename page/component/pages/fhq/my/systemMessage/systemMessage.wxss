@@ -1,0 +1,54 @@
+.container ul li {
+  display: flex;
+  justify-content: flex-start;
+  padding: 25rpx 32rpx 25rpx 24rpx;
+  background: #ffffff;
+  height: 110rpx;
+  position: relative;
+}
+.container ul li .coverImg {
+  display: inline;
+  margin-right: 25rpx;
+}
+.container ul li .coverImg image {
+  width: 99rpx;
+  height: 110rpx;
+}
+
+.container ul li .sigUpDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 30rpx;
+}
+
+.container ul li .sigUpDetails .msg {
+  font-size: 26rpx;
+  color: #9a9a9a;
+}
+
+.container ul li .timeWarp {
+  position: absolute;
+  right: 32rpx;
+  top: 40rpx;
+  margin: auto;
+  font-size: 22rpx;
+  color: #9a9a9a;
+}
+
+.container_nodata {
+  padding-top: 45%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.container_nodata image {
+  width: 190rpx;
+  height: 152rpx;
+}
+.container_nodata text {
+  color: #9a9a9a;
+  margin-top: 60rpx;
+  font-size: 28rpx;
+}

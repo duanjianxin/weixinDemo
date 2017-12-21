@@ -1,0 +1,69 @@
+<view class="fieldDetails">
+
+  <view wx:if="{{media_type== 0}}">
+    <view class="header">
+      <image src="{{headerFirstImg}}" data-src="{{headerFirstImg}}" mode="aspectFit" bindtap="previewImage"></image>
+      <text class="headerImgLength">{{headerImgs.length}}</text>
+    </view>
+  </view>
+  <view wx:elif="{{media_type== 1}}">
+    <view class="header">
+      <video src="{{headerFirstVideo}}" poster="{{headerFirstCover}}"></video>
+    </view>
+  </view>
+
+
+
+  <view class="titleWap">
+    <view class="headAvatar">
+      <view wx:if="{{headAvatar}}">
+        <image src='{{headAvatar}}'></image>
+      </view>
+      <view wx:else>
+        <image src='http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png'></image>
+      </view>
+      <text class="user_name">{{user_name}}</text>
+    </view>
+    <view class="following">
+      +关注
+    </view>
+  </view>
+
+  <view class="descriptionBox">
+    <text class="description">{{description}}</text>
+    <view class="field_descBar">
+      <text class="area_id">{{area_id}}</text>
+      <view class="field_right">
+        <view class="list_likes">
+          <view wx:if="{{is_favorite==0}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+          </view>
+          <view wx:elif="{{is_favorite==1}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan_pressed@2x.png"></image>
+          </view>
+          <view wx:else>
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+          </view>
+        </view>
+        {{favorite_count}}
+        <view class="list_storeUp">
+          <view wx:if="{{is_focus==0}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+          </view>
+          <view wx:elif="{{is_focus==1}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_favor_pressed.png"></image>
+          </view>
+          <view wx:else>
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+          </view>
+        </view>
+        {{focus_count}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 热线电话 -->
+  <view class="hotline" bindtap="clickHotline">
+    <image src="http://public-1255382141.file.myqcloud.com/miniApp/hotline.png"></image>
+  </view>
+</view>

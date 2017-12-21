@@ -1,0 +1,126 @@
+.homePageWarp .headBackground {
+    height: 420rpx;
+}
+
+.transitionBar {
+    width: 100%;
+    height: 20rpx;
+    background: #F2F2F2;
+}
+
+.homePageWarp .headBackground image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.headWarp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.headWarp .headerAvatar {
+    width: 138rpx;
+    height: 138rpx;
+    border-radius: 50%;
+    border: 1px solid #C2C2C2;
+    margin-top: 35rpx;
+}
+
+.headWarp .headName {
+    font-size: 34rpx;
+    color: #000000;
+    margin: 20rpx 0 45rpx 0;
+}
+
+.headWarp .following {
+    width: 158rpx;
+    height: 58rpx;
+    border: 1rpx solid #C6AC80;
+    color: #C6AC80;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 30rpx;
+    border-radius: 10rpx;
+    margin-bottom: 50rpx;
+}
+
+.headWarp .friend_focus {
+    color: #C6AC80;
+    font-size: 30rpx;
+    margin-bottom: 60rpx;
+}
+
+.headWarp .friend_focus text {
+    color: #000000;
+}
+
+
+/* 地址 */
+
+.locationWarp {
+    font-size: 30rpx;
+    padding: 36rpx 50rpx 28rpx 22rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.locationWarp .locationBox {
+    width: 520rpx;
+}
+
+.locationWarp .locationBox .location {
+    font-size: 28rpx;
+    width: 450rpx;
+    margin-left: 60rpx;
+}
+
+.locationWarp .map {
+    width: 100rpx;
+    height: 100rpx;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.locationWarp .map image {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 简介 */
+
+.descriptionWarp {
+    padding: 38rpx 50rpx 50rpx 20rpx;
+    margin-bottom: 90rpx;
+}
+
+.descriptionWarp .description {
+    font-size: 30rpx;
+    margin-left: 65rpx;
+}
+
+
+/* 热线电话 */
+
+.hotline {
+    width: 100%;
+    height: 89rpx;
+    border-top: 1rpx solid #C4A97D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: #ffffff;
+}
+
+.hotline image {
+    width: 51rpx;
+    height: 61rpx;
+}

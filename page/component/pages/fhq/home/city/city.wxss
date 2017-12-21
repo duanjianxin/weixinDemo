@@ -1,0 +1,58 @@
+@import "./iconfont.wxss";
+.cityWarp {
+  background: #ffffff;
+}
+.show {
+  display: block;
+}
+.hidden {
+  display: none;
+}
+.cityWarp ul li.city .cityBox {
+  height: 90rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+  font-size: 32rpx;
+  padding: 0 42rpx 0 52rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cityWarp ul li.city .areaWarp {
+  min-height: 100rpx;
+  background: #f0f0f0;
+  padding: 38rpx 13rpx 0 45rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+.cityWarp ul li.city .areaWarp li {
+  /* float: left; */
+  width: 138rpx;
+  height: 58rpx;
+  border-radius: 7rpx;
+  background: #ffffff;
+  margin-right: 33rpx;
+  margin-bottom: 36rpx;
+  display: inline-block;
+  text-align: center;
+  line-height: 58rpx;
+  font-size: 28rpx;
+}
+
+.cityWarp ul li.city .areaWarp li.on {
+  color: #c4a97c;
+  border: 1rpx solid #c4a97c;
+}
+
+/* 确认按钮 */
+.confirmBtn {
+  width: 206rpx;
+  height: 60rpx;
+  background: #c4a97c;
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 10rpx;
+  margin: 0 auto;
+  margin-bottom: 35rpx;
+}

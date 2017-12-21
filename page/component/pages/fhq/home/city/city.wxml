@@ -1,0 +1,30 @@
+<view class="cityWarp">
+    <ul>
+        <li class="city" bindtap="clickIsok" data-cityid="" data-cityname="全国" data-china="true">
+            <view class="cityBox">
+                全国
+                <i class="iconfont "></i>
+            </view>
+        </li>
+        <li wx:for="{{cityList}}" wx:for-index="cityIndex" wx:for-item="city" wx:key="index" class="city">
+            <view class="cityBox" data-listid="{{cityIndex + 1}}" catchtap="shoufenqin">
+                {{city.city_name}}
+                <view class="jiantou">
+                    <i class="iconfont   {{ (shoufenqinName == cityIndex +1) ? 'icon-jiantoushang ' : 'icon-jiantouxia'}}"></i>
+                </view>
+            </view>
+            <view class="areaWarp {{ (shoufenqinName == cityIndex +1) ? 'show' : 'hidden'}}" data-listid="{{cityIndex +1 }}">
+                <ul>
+                    <li bindtap="clickAreas" class="{{areasSelect==city.city_id ? 'on':''}}" data-areaskey="{{city.city_id }}">
+                        全部
+                    </li>
+                    <li wx:for="{{city.areas}}" wx:for-item="areas" wx:key="areasKey" wx:for-index="areasIndex" data-areaskey="{{areas.key }}"
+                        bindtap="clickAreas" class="{{areasSelect==areas.key ? 'on':''}}">
+                        {{areas.value}}
+                    </li>
+                </ul>
+                <view class="confirmBtn" bindtap="clickIsok" data-cityid="{{city.city_id}}" data-cityname="{{city.city_name}}">确定</view>
+            </view>
+        </li>
+    </ul>
+</view>

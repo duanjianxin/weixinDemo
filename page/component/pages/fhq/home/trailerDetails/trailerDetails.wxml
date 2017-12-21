@@ -1,0 +1,101 @@
+<view class="detailsWarp">
+    <view wx:if="{{cover[0].url}}" class="headImg">
+        <image src="{{cover[0].url}}"></image>
+    </view>
+    <view wx:else class="headImg">
+        <image src="http://public-1255382141.file.myqcloud.com/miniApp/default_img.png"></image>
+    </view>
+    <view class="traTopic">{{topic}}</view>
+    <view class="traStateBar">
+        <view class="followingBar">
+            <image class="icon_follow_gold" src="http://public-1255382141.file.myqcloud.com/miniApp/icon_follow_gold.png"></image>
+            <view wx:if="{{following==0}}" class="followingBtn">
+                +关注
+            </view>
+            <view wx:elif="{{following==1}}" class="followingBtn">
+                已关注
+            </view>
+            <view wx:else class="followingBtn">
+                +关注
+            </view>
+        </view>
+        <view class="list_storeUp">
+            <view wx:if="{{is_favorite==0}}">
+                <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+            </view>
+            <view wx:elif="{{is_favorite==1}}">
+                <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_favor_pressed.png"></image>
+            </view>
+            <view wx:else>
+                <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+            </view>
+            <text> {{focus_count}}</text>
+        </view>
+    </view>
+    <view class="transitionBar"></view>
+    <view class="timeLocationWarp">
+        <ul>
+            <li>
+                <view class="icon_box">
+                    <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_date.png"></image>
+                </view>
+                <view class="created_atBox">
+                    <view class="start_time">{{start_time}} - {{end_time}}</view>
+                    <view class="stop_time">报名截止日期：{{stop_time}}</view>
+                </view>
+            </li>
+            <li>
+                <view class="icon_box">
+                    <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_dw.png"></image>
+                </view>
+                <view class="locationBox">
+                    <view class="location">
+                        {{location}}
+                    </view>
+                    <view class="map">
+                        <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_map_yg.png"></image>
+                    </view>
+                </view>
+            </li>
+        </ul>
+    </view>
+    <view class="descriptionWarp">
+        <view class="descriptionTitle">
+            <text class="desLine"></text>
+            活动简介
+        </view>
+        <view class="description">
+            {{description}}
+        </view>
+    </view>
+    <view class="descriptionWarp">
+        <view class="descriptionTitle">
+            <text class="desLine"></text>
+            活动详情
+        </view>
+        <view class="descriptionDetail">
+            <view class="detailMedias {{ switch ? '' : 'on'}}">
+                <ul>
+                    <li wx:for="{{detail.medias}}" wx:key="{{*this}}" wx:for-item="data">
+                        <image src="{{data.url}}"></image>
+                    </li>
+                </ul>
+            </view>
+            <view class="switch" bindtap="onSwitch">
+                <view wx:if="{{switch}}">
+                    <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_unfold.png"></image>
+                </view>
+                <view wx:else>
+                    <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_fold.png"></image>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="nowSignUp">
+        <text>立即报名</text>
+    </view>
+    <!-- 热线电话 -->
+    <view class="hotline" bindtap="clickHotline">
+        <image src="http://public-1255382141.file.myqcloud.com/miniApp/hotline.png"></image>
+    </view>
+</view>

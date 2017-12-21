@@ -1,0 +1,45 @@
+<view class="container">
+  <view class="header">
+    <view class="header_imgBox">
+      <image src="{{imageUrl}}" class="header_img"></image>
+      <view class="header_text">
+        <text>{{nickname}}</text>
+        <view class="header_fans">
+          <image class="icon_fllow" src="{{icon_fllow}}"></image>
+          <text>关注：{{follow}}</text>
+          <image class="icon_favor_pressed" src="{{icon_favor_pressed}}"></image>
+          <text>收藏：{{collection}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 过渡条 -->
+  <view class="transitionBar"></view>
+  <view class="listBar">
+    <ul>
+      <li>
+        <navigator url="./systemMessage/systemMessage" open-type="navigate" hover-class="none">
+          <image class="icon_message" src="{{icon_message}}"></image>
+          <text>系统消息</text>
+          <view class="layui-badge-dot" wx:if="{{messageCircle}}"></view>
+          <image class="icon_forward_gold" src="{{icon_forward_gold}}"></image>
+        </navigator>
+      </li>
+      <li>
+        <a class="hotlineWarp" bindtap="makePhoneCall">
+          <image class="icon_message" src="{{icon_phone}}"></image>
+          <text>咨询热线</text>
+          <image class="icon_forward_gold" src="{{icon_forward_gold}}"></image>
+        </a>
+      </li>
+      <li>
+        <navigator url="./signUp/signUp" open-type="navigate" hover-class="none">
+          <image class="icon_message" src="{{ic_apply_my}}"></image>
+          <text>我的报名</text>
+          <image class="icon_forward_gold" src="{{icon_forward_gold}}"></image>
+        </navigator>
+      </li>
+    </ul>
+  </view>
+
+</view>

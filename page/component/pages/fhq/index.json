@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText": "个人demo"
+  "navigationBarTitleText": "个人demo",
+  "enablePullDownRefresh": true
 }

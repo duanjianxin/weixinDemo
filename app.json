@@ -34,9 +34,15 @@
     "page/component/pages/canvas/canvas",
 
     "page/component/pages/fhq/index",
-    "page/component/pages/fhq/city/city",
-    "page/component/pages/fhq/search/search",
-    "page/component/pages/fhq/conterList/conterList",
+    "page/component/pages/fhq/home/city/city",
+    "page/component/pages/fhq/home/search/search",
+    "page/component/pages/fhq/home/homePage/homePage",
+    "page/component/pages/fhq/home/fieldDetails/fieldDetails",
+    "page/component/pages/fhq/home/trailerDetails/trailerDetails",
+
+    "page/component/pages/fhq/my/my",
+    "page/component/pages/fhq/my/signUp/signUp",
+    "page/component/pages/fhq/my/systemMessage/systemMessage",
 
     "page/API/index",
 
@@ -108,6 +114,12 @@
       },
       {
         "pagePath": "page/API/index",
+        "iconPath": "image/icon_my.png",
+        "selectedIconPath": "image/icon_my_HL.png",
+        "text": "我的"
+      },
+      {
+        "pagePath": "page/component/pages/fhq/my/my",
         "iconPath": "image/icon_my.png",
         "selectedIconPath": "image/icon_my_HL.png",
         "text": "我的"

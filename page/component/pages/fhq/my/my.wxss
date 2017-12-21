@@ -1,0 +1,121 @@
+.container {
+  display: block;
+}
+.header {
+  height: 290rpx;
+  background: #d7bc8f;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+/* 头像 */
+.header_imgBox .header_img {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  display: block;
+  float: left;
+  margin-left: 55rpx;
+  margin-right: 40rpx;
+}
+
+.header_text {
+  padding-top: 20rpx;
+  float: left;
+  height: 120rpx;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #fefefe;
+  font-size: 30rpx;
+}
+/* 关注收藏 */
+.header_fans {
+  display: inline-flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+.header_fans .icon_fllow {
+  width: 30rpx;
+  height: 34rpx;
+}
+.header_fans .icon_favor_pressed {
+  width: 32rpx;
+  height: 29rpx;
+}
+
+.header_fans text {
+  margin: 0 15rpx;
+}
+
+/*  过渡条*/
+.transitionBar {
+  height: 20rpx;
+  background: #ececec;
+  width: 100%;
+}
+
+/* 列表 */
+.listBar {
+  padding-left: 50rpx;
+}
+
+.listBar ul li {
+  display: block;
+  width: 100%;
+  height: 99rpx;
+  border-bottom: 1px solid #bebebe;
+  display: flex;
+  align-items: center;
+}
+.listBar ul li navigator {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-right: 50rpx;
+  position: relative;
+}
+/* 咨询热线 */
+.listBar ul li .hotlineWarp{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 50rpx;
+    position: relative;
+}
+.icon_forward_gold {
+  position: absolute;
+  right: 50rpx;
+  margin: auto;
+}
+.listBar ul li .icon_message {
+  width: 30rpx;
+  height: 38rpx;
+}
+.listBar ul li text {
+  margin-left: 25rpx;
+  font-size: 30rpx;
+}
+
+.listBar ul li .layui-badge-dot {
+  position: absolute;
+  top: 30%;
+  margin: 0 6px 0;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  left: 160rpx;
+  border-radius: 50%;
+  display: inline-block;
+  background: red;
+}
+.listBar ul li .icon_forward_gold {
+  width: 20rpx;
+  height: 36rpx;
+}

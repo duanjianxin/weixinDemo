@@ -1,0 +1,157 @@
+.header {
+  height: 422rpx;
+  width: 100%;
+  position: relative;
+}
+
+.header image {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.header .headerImgLength {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 22rpx;
+  bottom: 20rpx;
+  margin: auto;
+  background: rgba(204, 204, 204, 0.3);
+  text-align: center;
+  line-height: 50rpx;
+  border-radius: 50%;
+  color: #fefefe;
+  font-size: 22rpx;
+}
+
+
+/* 视频 */
+
+.header video {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+
+/* title */
+
+.fieldDetails .titleWap {
+  height: 159rpx;
+  border-bottom: 1rpx solid #dadada;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 27rpx;
+  padding-right: 25rpx;
+}
+
+
+/* 头像 */
+
+.fieldDetails .titleWap .headAvatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fieldDetails .titleWap .headAvatar image {
+  width: 99rpx;
+  height: 99rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1rpx solid #eeeeee;
+  margin-right: 30rpx;
+}
+
+.fieldDetails .titleWap .headAvatar .user_name {
+  font-size: 30rpx;
+}
+
+.fieldDetails .titleWap .following {
+  font-size: 30rpx;
+  width: 118rpx;
+  height: 48rpx;
+  border: 1rpx solid #c4a97c;
+  color: #c4a97c;
+  text-align: center;
+  border-radius: 10rpx;
+  line-height: 48rpx;
+}
+
+.fieldDetails .descriptionBox .description {
+  padding: 42rpx 35rpx;
+  display: inline-block;
+  text-indent: 1em;
+}
+
+
+/* 收藏 点赞 条 */
+
+.field_descBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #c4a97c;
+  padding-left: 27rpx;
+  padding-right: 25rpx;
+}
+
+.field_descBar .area_id {
+  font-size: 22rpx;
+  color: #bcbcbc;
+}
+
+.field_descBar .field_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list_storeUp view {
+  display: flex;
+  align-items: center;
+}
+
+.list_storeUp image {
+  width: 36rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+  margin-left: 20rpx;
+}
+
+.list_likes view {
+  display: flex;
+  align-items: center;
+}
+
+.list_likes image {
+  width: 33rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+}
+
+
+/* 热线电话 */
+
+.hotline {
+  width: 100%;
+  height: 89rpx;
+  border-top: 1rpx solid #C4A97D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+.hotline image {
+  width: 51rpx;
+  height: 61rpx;
+}

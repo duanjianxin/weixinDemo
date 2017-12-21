@@ -1,0 +1,21 @@
+<view class="container" wx:if="{{messageList.length>0}}">
+  <ul>
+    <li wx:for="{{messageList}}" wx:key="{{index}}">
+      <view class="coverImg">
+        <image src="http://public-1255382141.file.myqcloud.com/miniApp/successed_apply.png" mode="widthFix"></image>
+      </view>
+      <view class="sigUpDetails">
+        <text class="title">{{item.title}}</text>
+        <text class="msg">{{item.msg}}</text>
+      </view>
+      <view class="timeWarp">
+        <text class="time">{{item.time}}</text>
+      </view>
+    </li>
+  </ul>
+</view>
+
+<view class="container_nodata" wx:else>
+  <image src="http://public-1255382141.file.myqcloud.com/miniApp/ic_affairs.png"></image>
+  <text>暂无任何数据</text>
+</view>

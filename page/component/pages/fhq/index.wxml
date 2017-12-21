@@ -1,15 +1,274 @@
-<!-- <import src="./city/city.wxml" /> -->
+<view class="header">
+  <navigator url="./home/city/city" class="city" hover-class="none">
+    <text>{{cityName}}</text>
+    <image class="icon_arrow" src="http://public-1255382141.file.myqcloud.com/miniApp/arrow_down.png"></image>
+  </navigator>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">场地</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">动态</view>
+    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">预告</view>
+  </view>
+  <navigator url="./home/search/search" hover-class="none">
+    <image class="icon_search" src="http://public-1255382141.file.myqcloud.com/miniApp/search_home.png"></image>
+  </navigator>
+</view>
 
-<view class="container">
-  <view class="header">
-    <navigator url="./city/city?title=city" open-type="navigate">
-      <button type="default" size="{{mini}}">city</button>
-    </navigator>
-    <navigator url="./search/search" open-type="navigate">
-      <button type="default" size="{{mini}}">搜索</button>
-    </navigator>
-    <navigator url="./conterList/conterList" open-type="navigate">
-      <button type="default" size="{{mini}}">list</button>
-    </navigator>
+<view class="containerWarp">
+  <!-- 场地 -->
+  <view class="{{currentTab==1 ?'show':'hidden'}}">
+    <block wx:if="{{isbannerImgUrls}}">
+      <swiper class="bannerSwiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        indicator-active-color="#C4A97C" style="height:350rpx;overflow: hidden;">
+        <block wx:for="{{bannerImgUrls}}" wx:key="{{*this}}">
+          <swiper-item>
+            <image src="{{item.img}}" class="slide_image" style="width:100%;height:100%;overflow: hidden;" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </block>
+    <view class="transitionBar"></view>
+    <view class="listField">
+      <ul>
+        <li wx:for="{{listFieldData}}" wx:key="{{*this}}" wx:for-index="idx">
+          <navigator url="./home/fieldDetails/fieldDetails?id={{item.id}}&type={{item.type}}" class="fieldDetails" hover-class="none">
+            <view class="listHeader">
+              <view wx:if="{{item.user.avatar}}">
+                <image src='{{item.user.avatar}}' catch:tap="goToHomePage" data-id="{{item.user.id}}" data-name="{{item.user.name}}"></image>
+              </view>
+              <view wx:else>
+                <image src='http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png' catch:tap="goToHomePage" data-id="{{item.user.id}}"
+                  data-name="{{item.user.name}}"></image>
+              </view>
+              <view class="listHeaderBar">
+                <text class="listHeader_title">{{item.user.name}}</text>
+                <text class="listHeader_time">{{item.created_at}}</text>
+              </view>
+            </view>
+            <view class="listCentor">
+              <view wx:if="{{item.media_type==0}}">
+                <view wx:if="{{item.medias.length==1}}" class="listFieldData1Img">
+                  <image src="{{item.medias[0].url}}" data-src="{{item.medias[0].url}}" data-index="{{idx}}" catch:tap="previewImage" />
+                  <text class="headerImgLength">{{item.medias.length}}</text>
+                </view>
+                <view wx:else>
+                  <ul>
+                    <li wx:for="{{item.medias}}" wx:key="{{*this}}">
+                      <image src="{{item.url}}" data-src="{{item.url}}" data-index="{{idx}}" catch:tap="previewImage" />
+                    </li>
+                  </ul>
+                </view>
+              </view>
+              <view wx:elif="{{item.media_type==1}}">
+                <video src="{{item.medias[0].url}}" poster="{{item.medias[0].cover}}" catch:tap="goToHomePage"></video>
+              </view>
+              <view wx:else>其它类型</view>
+              <view class="list_description">
+                {{item.description}}
+              </view>
+              <view class="list_descBar">
+                <text class="list_location">{{item.area_id}}
+                </text>
+                <view class="list_right">
+                  <view class="list_storeUp">
+                    <view wx:if="{{item.is_favorite==0}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+                    </view>
+                    <view wx:elif="{{item.is_favorite==1}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_favor_pressed.png"></image>
+                    </view>
+                    <view wx:else>
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+                    </view>
+                    {{item.focus_count}}
+                  </view>
+                  <view class="list_likes">
+                    <view wx:if="{{item.is_favorite==0}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+                    </view>
+                    <view wx:elif="{{item.is_favorite==1}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan_pressed@2x.png"></image>
+                    </view>
+                    <view wx:else>
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+                    </view>
+                    {{item.favorite_count}}
+                  </view>
+                </view>
+              </view>
+
+            </view>
+
+          </navigator>
+          <view class="transitionBar"></view>
+        </li>
+      </ul>
+      <text class="listFieldDataTheEnd {{listFieldDataTheEnd ?'show':'hidden'}}">没有数据了...</text>
+    </view>
+  </view>
+  <!-- 动态 -->
+  <view class="{{currentTab==2 ?'show':'hidden'}}">
+    <block wx:if="{{isbannerImgUrls2}}">
+      <swiper class="bannerSwiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        indicator-active-color="#C4A97C" style="height:350rpx;overflow: hidden;">
+        <block wx:for="{{bannerImgUrls2}}" wx:key="{{*this}}">
+          <swiper-item>
+            <image src="{{item.img}}" class="slide_image" style="width:100%;height:100%;overflow: hidden;" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </block>
+    <view class="transitionBar"></view>
+    <view class="listField">
+      <ul>
+        <li wx:for="{{listFieldData2}}" wx:key="{{*this}}" wx:for-index="idx">
+          <navigator url="./home/fieldDetails/fieldDetails?id={{item.id}}&type={{item.type}}" class="fieldDetails" hover-class="none">
+            <view class="listHeader">
+              <view wx:if="{{item.user.avatar}}">
+                <image src='{{item.user.avatar}}' catch:tap="goToHomePage" data-id="{{item.user.id}}" data-name="{{item.user.name}}"></image>
+              </view>
+              <view wx:else>
+                <image src='http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png' catch:tap="goToHomePage" data-id="{{item.user.id}}"
+                  data-name="{{item.user.name}}"></image>
+              </view>
+              <view class="listHeaderBar">
+                <text class="listHeader_title">{{item.user.name}}</text>
+                <text class="listHeader_time">{{item.created_at}}</text>
+              </view>
+            </view>
+            <view class="listCentor">
+              <view wx:if="{{item.media_type==0}}" class="listFieldData2Img">
+                <!-- <ul>
+                  <li wx:for="{{item.medias}}" wx:key="{{*this}}"> -->
+                <image src="{{item.medias[0].url}}" data-src="{{item.medias[0].url}}" data-index="{{idx}}" catch:tap="previewImage" mode="widthFix"
+                />
+                <text class="headerImgLength">{{item.medias.length}}</text>
+                <!-- </li>
+                </ul> -->
+              </view>
+              <view wx:elif="{{item.media_type==1}}">
+                <video src="{{item.medias[0].url}}" poster="{{item.medias[0].cover}}"></video>
+              </view>
+              <view wx:else>其它类型</view>
+
+              <view class="list_description">
+                {{item.description}}
+              </view>
+              <view class="list_descBar">
+                <text class="list_location">{{item.area_id}}
+                </text>
+                <view class="list_right">
+                  <view class="list_storeUp">
+                    <view wx:if="{{item.is_favorite==0}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+                    </view>
+                    <view wx:elif="{{item.is_favorite==1}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_favor_pressed.png"></image>
+                    </view>
+                    <view wx:else>
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_shoucang.png"></image>
+                    </view>
+                    {{item.focus_count}}
+                  </view>
+                  <view class="list_likes">
+                    <view wx:if="{{item.is_favorite==0}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+                    </view>
+                    <view wx:elif="{{item.is_favorite==1}}">
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan_pressed@2x.png"></image>
+                    </view>
+                    <view wx:else>
+                      <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_zan.png"></image>
+                    </view>
+                    {{item.favorite_count}}
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="transitionBar"></view>
+          </navigator>
+        </li>
+      </ul>
+      <text class="listFieldDataTheEnd {{listFieldDataTheEnd2 ?'show':'hidden'}}">没有数据了...</text>
+    </view>
+  </view>
+
+  <!-- 预告 -->
+  <view class="{{currentTab==3 ?'show':'hidden'}}">
+    <block wx:if="{{isbannerImgUrls3}}">
+      <swiper class="bannerSwiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"
+        indicator-active-color="#C4A97C" style="height:350rpx;overflow: hidden;">
+        <block wx:for="{{bannerImgUrls3}}" wx:key="{{*this}}">
+          <swiper-item>
+            <image src="{{item.img}}" class="slide_image" style="width:100%;height:100%;overflow: hidden;" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </block>
+    <view class="listField listField3">
+      <ul>
+        <li wx:for="{{listFieldData3}}" wx:key="{{*this}}" wx:for-index="idx">
+          <navigator url="./home/trailerDetails/trailerDetails?id={{item.id}}&type={{item.type}}&name={{item.user.name}}" class="fieldDetails"
+            hover-class="none">
+            <view class="listHeader">
+              <view wx:if="{{item.user.avatar}}">
+                <image src='{{item.user.avatar}}' catch:tap="goToHomePage" data-id="{{item.user.id}}" data-name="{{item.user.name}}"></image>
+              </view>
+              <view wx:else>
+                <image src='http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png' catch:tap="goToHomePage" data-id="{{item.user.id}}"
+                  data-name="{{item.user.name}}"></image>
+              </view>
+              <view class="listHeaderBar">
+                <text class="listHeader_title">{{item.user.name}}</text>
+                <text class="listHeader_time">{{item.created_at}}</text>
+              </view>
+            </view>
+            <view class="listCentor">
+              <view wx:if="{{item.media_type==0}}">
+                <ul>
+                  <li wx:for="{{item.cover}}" wx:key="{{*this}}">
+                    <image src="{{item.url}}" data-src="{{item.url}}" data-index="{{idx}}" mode="widthFix" />
+                  </li>
+                </ul>
+              </view>
+              <view wx:elif="{{item.media_type==1}}">
+                <video src="{{item.medias[0].url}}" poster="{{item.medias[0].cover}}"></video>
+              </view>
+              <view wx:else>其它类型</view>
+
+              <view class="list_description">
+                <text>{{item.description}}</text>
+                <text class="list_location3">{{item.area_id}}
+                </text>
+              </view>
+              <view class="list_descBar">
+                <image src="http://public-1255382141.file.myqcloud.com/miniApp/icon_date.png"></image>
+                <text class="list_location">
+                  {{item.start_time}} - {{item.end_time}}
+                </text>
+                <view wx:if="{{item.status==0 }}">
+                  <text class="list_status">草稿</text>
+                </view>
+                <view wx:elif="{{item.status==1 }}">
+                  <text class="list_status">审核中</text>
+                </view>
+                <view wx:elif="{{item.status==2 }}">
+                  <text class="list_status">未开始</text>
+                </view>
+                <view wx:elif="{{item.status==3 }}">
+                  <text class="list_status">报名中</text>
+                </view>
+                <view wx:elif="{{item.status==4 }}">
+                  <text class="list_status">已截至</text>
+                </view>
+                <view wx:else>
+                  <text class="list_status">其它</text>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </li>
+      </ul>
+      <text class="listFieldDataTheEnd {{listFieldDataTheEnd3 ?'show':'hidden'}}">没有数据了...</text>
+    </view>
   </view>
 </view>

@@ -1,0 +1,85 @@
+.container ul li {
+  display: block;
+  display: flex;
+  justify-content: space-between;
+  padding: 25rpx 40rpx 25rpx 20rpx;
+  border-bottom: 1px solid #bdbdbd;
+}
+.container ul li .coverImg {
+  border: 1rpx solid #999999;
+  display: inline;
+  overflow: hidden;
+  height: 164rpx;
+}
+.container ul li .coverImg image {
+  width: 247rpx;
+  height: 100%;
+}
+
+/* 详情 */
+.container ul li .sigUpDetails {
+  margin-left: 25rpx;
+  font-size: 26rpx;
+  color: #9c9c9c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* 标题 */
+.sigUpDetails .title {
+  font-size: 28rpx;
+  color: #090909;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+/* 时间 */
+.sigUpDetails .time {
+  font-size: 24rpx;
+}
+/* 地点 */
+.sigUpDetails .place {
+  font-size: 24rpx;
+}
+
+/* 通过  or  不通过  img */
+.sigUpDetails .pass {
+  width: 108rpx;
+  height: 108rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.sigUpDetails .nopass {
+  width: 114rpx;
+  height: 110rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+
+
+.container_nodata {
+  padding-top: 45%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+.container_nodata image {
+  width: 190rpx;
+  height: 152rpx;
+}
+.container_nodata text {
+  color: #9a9a9a;
+  margin-top: 60rpx;
+  font-size: 28rpx;
+}
