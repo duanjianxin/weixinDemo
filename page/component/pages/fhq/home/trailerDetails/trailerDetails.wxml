@@ -91,7 +91,7 @@
             </view>
         </view>
     </view>
-    <view class="nowSignUp">
+    <view class="nowSignUp" bindtap="nowSignUpBtn">
         <text>立即报名</text>
     </view>
     <!-- 热线电话 -->

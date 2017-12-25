@@ -5,6 +5,7 @@ Page({
     bannerImgUrls: [],
     bannerImgUrls2: [],
     bannerImgUrls3: [],
+    // 滚动条距离
     pageScroll: null,
     pageScroll2: null,
     pageScroll3: null,
@@ -60,11 +61,41 @@ Page({
   },
   // 下拉刷新
   onPullDownRefresh: function() {
+    let _this = this;
     wx.showToast({
       title: "加载中...",
       icon: "loading"
     });
-    console.log("下拉刷新");
+    // wx.startPullDownRefresh({
+    //   success() {
+    //     console.log('ssss');
+    //   }
+    // });
+    if (_this.data.currentTab == 1) {
+      this.setData({
+        listFieldData: [],
+        listFieldDataTheEnd: false,
+        pageScroll: null
+      });
+      _this.getListData(_this.data.cityId, _this.data.listPage, "");
+      wx.stopPullDownRefresh();
+    } else if (_this.data.currentTab == 2) {
+      this.setData({
+        listFieldData2: [],
+        listFieldDataTheEnd2: false,
+        pageScroll2: null
+      });
+      this.getListData2(this.data.cityId, this.data.listPage2, "");
+      wx.stopPullDownRefresh();
+    } else if (_this.data.currentTab == 3) {
+      this.setData({
+        listFieldData3: [],
+        listFieldDataTheEnd3: false,
+        pageScroll3: null
+      });
+      this.getListData3(this.data.cityId, "");
+      wx.stopPullDownRefresh();
+    }
   },
   changeIndicatorDots: function(e) {
     this.setData({
@@ -88,9 +119,7 @@ Page({
   },
   onLoad: function() {
     var that = this;
-    /**
-     * 获取系统信息
-     */
+    /** 获取系统信息*/
     wx.getSystemInfo({
       success: function(res) {
         that.setData({
@@ -177,24 +206,10 @@ Page({
   // 页面隐藏
   onHide() {
     this.setData({
-      // // 列表数据 场地
-      // listFieldData: [],
-      // // 列表数据 动态
-      // listFieldData2: [],
-      // // 列表数据 预告
-      // listFieldData3: [],
-      // 数据是否到底
-      // listFieldDataTheEnd: false,
-      // listFieldDataTheEnd2: false,
-      // listFieldDataTheEnd3: false,
       // 微信查看相片
       previewImage: [],
       previewImage2: [],
       previewImage3: []
-      // // 最后一条数据id
-      // listLastId: "",
-      // listLastId2: "",
-      // listLastId3: ""
     });
   },
   /**
@@ -210,22 +225,6 @@ Page({
         currentTab: e.target.dataset.current
       });
       if (e.target.dataset.current == 1) {
-        // // 获取列表
-        // that.getListData(this.data.cityId, this.data.listPage);
-        // that.setData({
-        //   listFieldData: [],
-        //   listFieldData2: [],
-        //   listFieldData3: [],
-        //   previewImage2: [],
-        //   previewImage3: [],
-        //   // 最后一条数据id
-        //   listLastId: "",
-        //   listLastId2: "",
-        //   // 最后一条数据id
-        //   listLastId3: "",
-        //   listFieldDataTheEnd2: false
-        // });
-
         if (
           this.data.listFieldData == "" &&
           this.data.listFieldDataTheEnd === false
@@ -241,26 +240,6 @@ Page({
         }
       }
       if (e.target.dataset.current == 2) {
-        // that.setData({
-        //   listFieldData: [],
-        //   listFieldData2: [],
-        //   listFieldData3: [],
-        //   previewImage2: [],
-        //   previewImage3: [],
-        //   listFieldDataTheEnd: false,
-        //   // 最后一条数据id
-        //   listLastId: "",
-        //   listLastId2: "",
-        //   // 最后一条数据id
-        //   listLastId3: ""
-        // });
-        // // 获取列表
-        // that.getListData2(that.data.cityId, that.data.listPage2);
-        // // 获取banner场地
-        // that.getBanner2(2);
-        console.log(this.data.listFieldData2);
-        console.log("|||||||||||");
-        console.log(this.data.listFieldDataTheEnd2);
         if (
           this.data.listFieldData2 == "" &&
           this.data.listFieldDataTheEnd2 === false
@@ -275,27 +254,6 @@ Page({
         }
       }
       if (e.target.dataset.current == 3) {
-        // that.setData({
-        //   listFieldData: [],
-        //   listFieldData2: [],
-        //   listFieldData3: [],
-        //   previewImage: [],
-        //   previewImage2: [],
-        //   previewImage3: [],
-        //   listFieldDataTheEnd: false,
-        //   // 最后一条数据id
-        //   listLastId: "",
-        //   listLastId2: "",
-        //   // 最后一条数据id
-        //   listLastId3: ""
-        // });
-        // // 获取列表
-        // that.getListData3({
-        //   id: that.data.listLastId3,
-        //   area_id: that.data.cityId
-        // });
-        // // 获取banner场地
-        // that.getBanner3(3);
         if (
           this.data.listFieldData3 == "" &&
           this.data.listFieldDataTheEnd3 === false
@@ -560,7 +518,6 @@ Page({
     }
   },
   onReachBottom() {
-    console.log("滚动到底部了");
     if (this.data.currentTab == 1 && this.data.pageScroll > 700) {
       if (!this.data.listFieldDataTheEnd) {
         // 获取场地列表;
@@ -604,6 +561,5 @@ Page({
       // 接口调用无论成功或者失败的回调方法
       complete: function() {}
     });
-    // console.log(e.currentTarget.dataset);
   }
 });

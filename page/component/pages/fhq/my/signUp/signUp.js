@@ -1,63 +1,9 @@
+// 获取接口地址
+const apiUrl = require("../../../../../../config").apiUrl;
 Page({
   data: {
-    dataList: [
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: true
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      },
-      {
-        url:
-          "http://public-1255382141.file.myqcloud.com/miniApp/%E9%A6%96%E9%A1%B5%20%EF%BC%8D%E9%A2%84%E5%91%8A%E8%AF%A6%E6%83%85.png",
-        title: "第七届中国国际机器人高峰论坛报名",
-        time: "2017.10.10 09:00-10.12 16:00",
-        place: "深圳",
-        pass: false
-      }
-    ]
+    token_info: null,
+    dataList: []
   },
   // 数据展示
   dataShow(data = null) {
@@ -71,7 +17,39 @@ Page({
       });
     }
   },
-  onShow: function() {},
-  onLoad: function() {
+  onShow: function() {
+    this.setData({
+      token_info: getApp().globalData.token_info
+    });
+    this.getList("/user/prevueJoinList", this.data.token_info.access_token);
+  },
+  getList(url, access_token) {
+    let _this = this;
+    wx.request({
+      url: apiUrl + url,
+      method: "GET",
+      data: {},
+      header: {
+        "content-type": "application/json",
+        Authorization: " Bearer " + access_token
+      },
+      success: function(res) {
+        if (res.data.status_code % 100 == 0) {
+          _this.setData({
+            dataList: res.data.result
+          });
+        }
+        console.log(res.data);
+      },
+      fail(res) {
+        wx.showModal({
+          content: res.data.message,
+          showCancel: false,
+          confirmText: "确定"
+        });
+      }
+    });
   }
+
+  // url /user/prevueJoinList
 });

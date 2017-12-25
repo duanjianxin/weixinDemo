@@ -1,0 +1,58 @@
+.base {
+  padding: 0 60rpx;
+}
+.base ul li {
+  height: 100rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #d8c5a8;
+  display: block;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.base ul li text {
+  width: 20%;
+  float: left;
+}
+.base ul li view {
+  width: 80%;
+  float: left;
+  font-size: 28rpx;
+}
+.base ul li input {
+  width: 100%;
+}
+.ext {
+  padding: 0 60rpx;
+}
+.ext ul li {
+  height: 100rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #d8c5a8;
+  display: block;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.ext ul li text {
+  width: 20%;
+  float: left;
+}
+.ext ul li input {
+  width: 80%;
+  float: left;
+  font-size: 28rpx;
+  display: inline-block;
+}
+
+.subminBtn {
+  background: #c4a97c;
+  color: #ffffff;
+  height: 90rpx;
+  width: 400rpx;
+  text-align: center;
+  line-height: 90rpx;
+  margin: 100rpx auto;
+  border-radius: 10rpx;
+  border: none;
+}

@@ -6,7 +6,7 @@
   border-bottom: 1px solid #bdbdbd;
 }
 .container ul li .coverImg {
-  border: 1rpx solid #999999;
+  /* border: 1rpx solid #999999; */
   display: inline;
   overflow: hidden;
   height: 164rpx;

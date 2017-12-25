@@ -1,0 +1,34 @@
+<view class="nowSingWarp">
+    <view class="base">
+        <ul>
+            <li wx:for="{{input_items.base}}" wx:key="{{*this}}" wx:for-item="item" wx:for-index="index">
+                <text>{{item.alias}}{{item.needed==1 ?' * ':''}} :</text>
+                <view wx:if="{{item.key=='mobile'}}">
+                    <input type="number" maxlength="11" data-index="{{index}}" data-typewarp='base' bindinput="bindKeyInput" data-key="{{item.key}}"
+                        data-alias="{{item.alias}}" data-type="{{item.type}}" data-needed="{{item.needed}}" />
+                </view>
+                <view wx:elif="{{item.key=='counts'}}">
+                    <input type="number" data-index="{{index}}" data-typewarp='base' bindinput="bindKeyInput" data-key="{{item.key}}" data-alias="{{item.alias}}"
+                        data-type="{{item.type}}" data-needed="{{item.needed}}" />
+                </view>
+                <view wx:else>
+                    <input type="text" data-index="{{index}}" data-typewarp='base' bindinput="bindKeyInput" data-key="{{item.key}}" data-alias="{{item.alias}}"
+                        data-type="{{item.type}}" data-needed="{{item.needed}}" />
+                </view>
+            </li>
+        </ul>
+    </view>
+    <block wx:if="{{input_items.ext.length>0}}">
+        <view class="ext">
+            <ul>
+                <li wx:for="{{input_items.ext}}" wx:key="{{*this}}" wx:for-item="item" wx:for-index="index">
+                    <text>{{item.alias}}{{item.needed==1 ?' * ':''}} :</text>
+                    <input type="text" data-index="{{index}}" data-typewarp='ext' bindinput="bindKeyInput" data-key="{{item.key}}" data-alias="{{item.alias}}"
+                        data-type="{{item.type}}" data-needed="{{item.needed}}" />
+                </li>
+            </ul>
+        </view>
+    </block>
+
+    <view class="subminBtn" bindtap="onSubmit">提交</view>
+</view>

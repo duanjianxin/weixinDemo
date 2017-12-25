@@ -2,14 +2,31 @@
   <ul>
     <li wx:for="{{messageList}}" wx:key="{{index}}">
       <view class="coverImg">
-        <image src="http://public-1255382141.file.myqcloud.com/miniApp/successed_apply.png" mode="widthFix"></image>
+        <!-- 系统消息 -->
+        <view wx:if="{{item.type==1}}">
+          <view wx:if="{{item.success_type==1}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/successed_system.png " mode="widthFix"></image>
+          </view>
+          <view wx:elif="{{item.success_type==-1}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/fail_system.png " mode="widthFix"></image>
+          </view>
+        </view>
+        <!-- 预告消息 -->
+        <view wx:elif="{{item.type==2}}">
+          <view wx:if="{{item.success_type==1}}">
+            <image src="http://public-1255382141.file.myqcloud.com/miniApp/successed_apply.png" mode="widthFix"></image>
+          </view>
+        </view>
+        <!--认证成功 http://public-1255382141.file.myqcloud.com/miniApp/successed_system.png -->
+        <!-- 失败  http://public-1255382141.file.myqcloud.com/miniApp/fail_system.png -->
+        <!-- 预告报名  http://public-1255382141.file.myqcloud.com/miniApp/successed_apply.png -->
       </view>
       <view class="sigUpDetails">
         <text class="title">{{item.title}}</text>
-        <text class="msg">{{item.msg}}</text>
+        <text class="msg">{{item.content}}</text>
       </view>
       <view class="timeWarp">
-        <text class="time">{{item.time}}</text>
+        <text class="time">{{item.send_time}}</text>
       </view>
     </li>
   </ul>

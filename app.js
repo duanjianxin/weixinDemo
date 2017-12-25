@@ -14,19 +14,21 @@ App({
   },
   globalData: {
     hasLogin: false,
-    openid: null,
     unionid: null,
     result: null,
     // 城市id
     cityId: "",
     // 城市名称
-    cityName: "全国"
+    cityName: "全国",
+    user_info: null,
+    token_info: null
   },
   // lazy loading openid
   getUserOpenId: function(callback) {
     var self = this;
-    if (self.globalData.openid && self.globalData.unionid) {
-      callback(null, self.globalData.openid);
+    if (self.globalData.unionid) {
+      callback(null, self.globalData.unionid);
+      console.log("已有unionid");
     } else {
       wx.login({
         success: function(data) {
@@ -38,7 +40,7 @@ App({
             },
             success: function(res) {
               console.log("拉取openid成功", res);
-              callback(null, self.globalData.openid);
+              callback(null, self.globalData.unionid);
               self.fhqSetStorage(res);
             },
             fail: function(res) {
@@ -69,17 +71,8 @@ App({
     // console.log(data);
     if (data.data.status_code % 100 == 0) {
       if (data.data.result.register == 0) {
-        self.globalData.openid = data.data.result.user_info.openid;
         self.globalData.unionid = data.data.result.user_info.unionid;
         console.log("用户未注册");
-        wx.setStorage({
-          key: "openid",
-          data: data.data.result.user_info.openid
-        });
-        wx.setStorage({
-          key: "unionid",
-          data: data.data.result.user_info.unionid
-        });
         // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
         wx.getSetting({
           success(res) {
@@ -107,6 +100,13 @@ App({
         });
       } else {
         console.log("用户已经注册");
+        console.log(data.data.result);
+        self.globalData.token_info = data.data.result.token_info;
+        //获取用户信息
+        self.getUserinfo(
+          "/user/userInfo",
+          data.data.result.token_info.access_token
+        );
       }
     } else {
       wx.showModal({
@@ -118,6 +118,7 @@ App({
   },
   //获取访问令牌接口
   getAccessToken(url, union_id, user_info) {
+    let _this = this;
     wx.request({
       url: apiUrl + url,
       method: "POST",
@@ -129,8 +130,32 @@ App({
         "content-type": "application/json"
       },
       success: function(res) {
-        // self.globalData.result = res.data.result.user_info.result;
-        console.log(res.data);
+        if (res.data.status_code % 100 == 0) {
+          _this.globalData.token_info = res.data.result;
+
+          //获取用户信息
+          _this.getUserinfo("/user/userInfo", res.data.result.access_token);
+        }
+      }
+    });
+  },
+  // 获取用户信息
+  getUserinfo(url, access_token) {
+    let _this = this;
+    wx.request({
+      url: apiUrl + url,
+      method: "GET",
+      data: {
+        id: ""
+      },
+      header: {
+        "content-type": "application/json",
+        Authorization: " Bearer " + access_token
+      },
+      success: function(res) {
+        if (res.data.status_code % 100 == 0) {
+          _this.globalData.user_info = res.data.result;
+        }
       }
     });
   }

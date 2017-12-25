@@ -1,14 +1,15 @@
 <view class="container">
   <view class="header">
     <view class="header_imgBox">
-      <image src="{{imageUrl}}" class="header_img"></image>
+      <image src="{{user_info.avatar ? user_info.avatar :'http://public-1255382141.file.myqcloud.com/miniApp/ic_default_img.png'}}"
+        class="header_img"></image>
       <view class="header_text">
-        <text>{{nickname}}</text>
+        <text>{{user_info.name}}</text>
         <view class="header_fans">
           <image class="icon_fllow" src="{{icon_fllow}}"></image>
-          <text>关注：{{follow}}</text>
+          <text>关注：{{user_info.friend_count}}</text>
           <image class="icon_favor_pressed" src="{{icon_favor_pressed}}"></image>
-          <text>收藏：{{collection}}</text>
+          <text>收藏：{{user_info.focus_count}}</text>
         </view>
       </view>
     </view>

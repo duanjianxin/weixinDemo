@@ -3,34 +3,34 @@ Page({
   data: {
     switch: false
   },
-  //   onLoad(options) {
-  //     let _this = this;
-  //     this.setData({
-  //       id: options.id
-  //     }),
-  //       wx.setNavigationBarTitle({
-  //         title: options.name + "详情"
-  //       });
-  //     _this.getData(
-  //       "/prevue/detail",
-  //       {
-  //         id: options.id
-  //       },
-  //       _this.success,
-  //       _this.fail
-  //     );
-  //   },
-  onShow() {
-    let _this = this;
-    _this.getData(
-      "/prevue/detail",
-      {
-        id: "8a0a22e0-0bd4-f477-8e4c-fb0323f16f1d"
-      },
-      _this.success,
-      _this.fail
-    );
-  },
+    onLoad(options) {
+      let _this = this;
+      this.setData({
+        id: options.id
+      }),
+        wx.setNavigationBarTitle({
+          title: options.name + "详情"
+        });
+      _this.getData(
+        "/prevue/detail",
+        {
+          id: options.id
+        },
+        _this.success,
+        _this.fail
+      );
+    },
+  // onShow() {
+  //   let _this = this;
+  //   _this.getData(
+  //     "/prevue/detail",
+  //     {
+  //       id: "8a0a22e0-0bd4-f477-8e4c-fb0323f16f1d"
+  //     },
+  //     _this.success,
+  //     _this.fail
+  //   );
+  // },
   //   请求数据  success成功 回调方法     fail 失败 回调方法
   getData(url, data, success, fail) {
     let _this = this;
@@ -119,6 +119,18 @@ Page({
   onSwitch() {
     this.setData({
       switch: !this.data.switch
+    });
+  },
+  nowSignUpBtn() {
+    console.log("我要跳转到报名");
+    wx.navigateTo({
+      url:
+        "../nowSignUp/nowSignUp?input_items=" +
+        JSON.stringify(this.data.input_items) +
+        "&id=" +
+        this.data.id +
+        "&phoneNumber=" +
+        this.data.user.hotline
     });
   }
 });
